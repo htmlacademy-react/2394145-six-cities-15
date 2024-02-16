@@ -1,5 +1,5 @@
-import PlaceCard from '../components/PlaceCard';
-import Header from '../components/header';
+import PlaceCard from '../components/place-card.tsx';
+import Header from '../components/header.tsx';
 
 type MainPageProps = {
   placesCount: number;
