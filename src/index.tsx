@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/App';
+import App from './components/app/App.tsx';
 import { Counts } from './consts.ts';
 
 const root = ReactDOM.createRoot(

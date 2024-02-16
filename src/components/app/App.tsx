@@ -1,4 +1,4 @@
-import MainPage from '../pages/main.tsx';
+import MainPage from '../../pages/main-page/main-page';
 
 
 type AppProps = {
