@@ -1,0 +1,17 @@
+.not-found-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.not-found {
+  padding: 30px;
+}
+
+button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: #4481c3;
+  color: white;
+}
