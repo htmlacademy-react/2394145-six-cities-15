@@ -14,7 +14,7 @@ export function FavoritesList({offersData}: FavoritesListProps): JSX.Element {
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
       <ul className="favorites__list">
-        {uniqueArrayCities.map((current, id) => <FavoritesLocationsItems key={id} offersData={offersData.filter((item) => item.city.name === current)}/>)}
+        {uniqueArrayCities.map((current) => <FavoritesLocationsItems key={current} offersData={offersData.filter((item) => item.city.name === current)}/>)}
       </ul>
     </section>
   );
