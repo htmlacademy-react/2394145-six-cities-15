@@ -7,20 +7,20 @@ import PrivateRoute from '../private-route/private-route';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-
+import { OffersDataType } from '../../mocks/offers';
 
 type AppProps = {
-  placesCount: number;
-};
+  offersData: OffersDataType[];
+}
 
-function App({placesCount}: AppProps): JSX.Element {
+function App({offersData}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage placesCount={placesCount} />}
+            element={<MainPage offersData={offersData} />}
           />
           <Route
             path={AppRoute.Login}
@@ -28,13 +28,13 @@ function App({placesCount}: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage/>}
+            element={<OfferPage offersData={offersData}/>}
           />
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <FavoritesPage/>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <FavoritesPage offersData={offersData}/>
               </PrivateRoute>
             }
           />
