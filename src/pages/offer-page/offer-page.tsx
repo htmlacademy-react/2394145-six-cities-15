@@ -14,7 +14,7 @@ function OfferPage({offersData}: OfferPageProps): JSX.Element | undefined {
   const offer = offersData.find((item) => item.id === id);
 
   if (offer === undefined) {
-    return <Navigate to='*' />;
+    return <Navigate to='/NotFound' />;
   } else {
     return (
       <div className="page">
