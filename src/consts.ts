@@ -23,3 +23,7 @@ export enum Cities {
   Hamburg ='Hamburg',
   Dusseldorf = 'Dusseldorf'
 }
+
+export const RatingTitle: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
+
+//export const RatingTitle: string[] = ['terribly', 'badly', 'not bad', 'good', 'perfect'];

@@ -7,12 +7,7 @@ type PlaceListProps = {
 }
 
 export function PlaceList ({offersData}: PlaceListProps): JSX.Element {
-  const id = useState('');
-  const setId = id[1];
-
-  const handleSetId = (key: string) => {
-    setId(key);
-  };
+  const [, setId] = useState('');
 
   return (
     <section className="cities__places places">
@@ -34,7 +29,7 @@ export function PlaceList ({offersData}: PlaceListProps): JSX.Element {
         </ul>
       </form>
       <div className="cities__places-list places__list tabs__content" >
-        {offersData.map((curent) => <PlaceCard key={curent.id} offersData={curent} handleSetId={handleSetId} />)}
+        {offersData.map((curent) => <PlaceCard key={curent.id} offersData={curent} setId={setId} />)}
       </div>
     </section>
   );

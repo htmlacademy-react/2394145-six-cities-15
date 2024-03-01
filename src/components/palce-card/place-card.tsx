@@ -3,14 +3,14 @@ import { OffersDataType } from '../../mocks/offers';
 
 type PlaceCardProps = {
   offersData: OffersDataType;
-  handleSetId: (key: string) => void;
+  setId: (key: string) => void;
 }
 
-function PlaceCard({offersData, handleSetId}: PlaceCardProps): JSX.Element {
+function PlaceCard({offersData, setId}: PlaceCardProps): JSX.Element {
 
   return (
     <Link to={`/offer/${offersData.id}`}>
-      <article className="cities__card place-card" onMouseOver={() => handleSetId(offersData.id)}>
+      <article className="cities__card place-card" onMouseOver={() => setId(offersData.id)}>
         <div className="cities__image-wrapper place-card__image-wrapper">
           <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
         </div>
