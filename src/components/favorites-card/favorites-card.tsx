@@ -1,20 +1,22 @@
 import { Link } from 'react-router-dom';
 import { OffersDataType } from '../../mocks/offers';
+import { FavoritesPremium } from '../favorites-premium/favorites-premium';
 
-type PlaceCardProps = {
+type FavoritesCardProps = {
   offersData: OffersDataType;
-  setId: (key: string) => void;
 }
 
-function PlaceCard({offersData, setId}: PlaceCardProps): JSX.Element {
-
+export function FavoritesCard({offersData}: FavoritesCardProps): JSX.Element {
   return (
     <Link to={`/offer/${offersData.id}`}>
-      <article className="cities__card place-card" onMouseOver={() => setId(offersData.id)}>
-        <div className="cities__image-wrapper place-card__image-wrapper">
-          <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
+      <article className="favorites__card place-card">
+        {offersData.isPremium ? <FavoritesPremium/> : undefined}
+        <div className="favorites__image-wrapper place-card__image-wrapper">
+          <a href="#">
+            <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image"/>
+          </a>
         </div>
-        <div className="place-card__info">
+        <div className="favorites__card-info place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro;{offersData.price}</b>
@@ -34,14 +36,12 @@ function PlaceCard({offersData, setId}: PlaceCardProps): JSX.Element {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a>{offersData.title}</a>
+            <a href="#">{offersData.title}</a>
           </h2>
-          <p className="place-card__type">{offersData.type[0].toUpperCase() + offersData.type.slice(1)}</p>
+          <p className="place-card__type">Apartment</p>
         </div>
       </article>
     </Link>
   );
 }
-
-export default PlaceCard;
 
