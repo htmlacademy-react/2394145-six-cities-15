@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { OffersDataType } from '../../mocks/offers';
+import { OffersDataType } from '../types/types';
 
 type PlaceCardProps = {
   offersData: OffersDataType;

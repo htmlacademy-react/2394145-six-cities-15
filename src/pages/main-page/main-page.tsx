@@ -1,13 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { OffersDataType } from '../../mocks/offers';
 import { PlaceList } from '../../components/place-list/place-list';
+import { useState } from 'react';
+import { LocationsItem } from '../../components/locations-item/locations-item';
+import { MainEmpty } from '../../components/main-empty/main-empty';
+import { OffersDataType } from '../../components/types/types';
 
 type MainProps = {
   offersData: OffersDataType[];
+  cities: string[];
 }
 
-function MainPage({offersData}: MainProps): JSX.Element {
+function MainPage({offersData, cities}: MainProps): JSX.Element {
+  const [city, setCity] = useState('Amsterdam');
+  const selectedOffers = offersData.filter((current) => current.city.name === city);
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -19,45 +25,13 @@ function MainPage({offersData}: MainProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
+              {cities.map((current) => <LocationsItem city={current} key={current} selectedCity={city} setCity={setCity}/>)}
             </ul>
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <PlaceList offersData={offersData} />
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
+            {selectedOffers.length !== 0 ? <PlaceList offersData={selectedOffers} city={selectedOffers !== undefined ? selectedOffers[0].city : null}/> : <MainEmpty/>}
           </div>
         </div>
       </main>

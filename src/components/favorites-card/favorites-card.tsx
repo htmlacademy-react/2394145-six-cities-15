@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { OffersDataType } from '../../mocks/offers';
 import { FavoritesPremium } from '../favorites-premium/favorites-premium';
+import { OffersDataType } from '../types/types';
 
 type FavoritesCardProps = {
   offersData: OffersDataType;

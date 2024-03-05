@@ -1,5 +1,5 @@
-import { OffersDataType } from '../../mocks/offers';
 import { FavoritesCard } from '../favorites-card/favorites-card';
+import { OffersDataType } from '../types/types';
 
 type FavoritesLocationsItemsProps = {
   offersData: OffersDataType[];
