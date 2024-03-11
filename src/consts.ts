@@ -22,8 +22,6 @@ export enum CitiesEnum {
 
 export const RatingTitle: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
-export const CITIES: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
-
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 

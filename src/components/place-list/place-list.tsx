@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PlaceCard from '../palce-card/place-card';
 import { Map } from '../map/map';
-import { City, OffersDataType } from '../types/types';
+import { City, OffersDataType } from '../../types';
 
 type PlaceListProps = {
   city: City | null;

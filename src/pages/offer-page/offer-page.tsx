@@ -3,7 +3,7 @@ import Header from '../../components/header/header';
 import { Navigate, useParams } from 'react-router-dom';
 import { OfferPremium } from '../../components/offer-premium/offer-premium';
 import { ReviewsForm } from '../../components/reviews-form/reviews-form';
-import { OffersDataType } from '../../components/types/types';
+import { OffersDataType } from '../../types';
 
 type OfferPageProps = {
   offersData: OffersDataType[];

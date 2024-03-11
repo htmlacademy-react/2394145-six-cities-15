@@ -1,4 +1,4 @@
-import { OffersDataType } from '../components/types/types';
+import { OffersDataType } from '../types';
 
 export const offersData: OffersDataType[] = [
   {

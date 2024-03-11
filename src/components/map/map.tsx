@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import {City, OffersDataType} from '../types/types';
+import {City, OffersDataType} from '../../types';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../consts';
 import 'leaflet/dist/leaflet.css';
 import {useMap} from '../hooks/use-map';
@@ -40,7 +40,7 @@ export function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedPoint !== undefined && point.id === selectedPoint
+            point.id === selectedPoint
               ? currentCustomIcon
               : defaultCustomIcon
           )
