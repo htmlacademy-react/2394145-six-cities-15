@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { OffersDataType } from '../../mocks/offers';
 import { Navigate, useParams } from 'react-router-dom';
 import { OfferPremium } from '../../components/offer-premium/offer-premium';
 import { ReviewsForm } from '../../components/reviews-form/reviews-form';
+import { OffersDataType } from '../../types';
 
 type OfferPageProps = {
   offersData: OffersDataType[];

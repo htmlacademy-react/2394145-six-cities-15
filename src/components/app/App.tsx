@@ -7,7 +7,8 @@ import PrivateRoute from '../private-route/private-route';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-import { OffersDataType } from '../../mocks/offers';
+import { OffersDataType } from '../../types';
+
 
 type AppProps = {
   offersData: OffersDataType[];
