@@ -7,21 +7,28 @@ import PrivateRoute from '../private-route/private-route';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-import { OffersDataType } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { setOffers } from '../../store/action';
+import { offersData } from '../../mocks/offers';
 
 
-type AppProps = {
-  offersData: OffersDataType[];
-}
+function App(): JSX.Element {
 
-function App({offersData}: AppProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const offers = useAppSelector((state) => state.offers);
+
+  useEffect(() => {
+    dispatch(setOffers(offersData));
+  }, [dispatch]);
+
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offersData={offersData} />}
+            element={<MainPage offersData={offers} />}
           />
           <Route
             path={AppRoute.Login}
@@ -29,13 +36,13 @@ function App({offersData}: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage offersData={offersData}/>}
+            element={<OfferPage offersData={offers}/>}
           />
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <FavoritesPage offersData={offersData}/>
+                <FavoritesPage offersData={offers}/>
               </PrivateRoute>
             }
           />
