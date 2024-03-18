@@ -5,6 +5,6 @@ export const changeCity = createAction('city/changeCity', (cityName: string) => 
   payload: cityName
 }));
 
-export const setOffers = createAction('offers/change', (offres: OffersDataType[]) => ({
-  payload: offres
+export const setOffers = createAction('offers/change', (offers: OffersDataType[]) => ({
+  payload: offers
 }));
