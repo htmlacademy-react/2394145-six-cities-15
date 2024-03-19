@@ -21,3 +21,10 @@ export type OffersDataType = {
     rating: number;
     previewImage: string;
     };
+
+
+export type InitialStateType = {
+      city: string;
+      offers: OffersDataType[];
+    };
+

@@ -1,18 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import { PlaceList } from '../../components/place-list/place-list';
-import { useState } from 'react';
 import { LocationsItem } from '../../components/locations-item/locations-item';
 import { MainEmpty } from '../../components/main-empty/main-empty';
 import { OffersDataType } from '../../types';
 import { CitiesEnum } from '../../consts';
+import { useAppSelector } from '../../hooks';
 
 type MainProps = {
   offersData: OffersDataType[];
 }
 
 function MainPage({offersData}: MainProps): JSX.Element {
-  const [city, setCity] = useState('Amsterdam');
+  const city = useAppSelector((state) => state.city);
   const selectedOffers = offersData.filter((current) => current.city.name === city);
   return (
     <div className="page page--gray page--main">
@@ -25,7 +25,7 @@ function MainPage({offersData}: MainProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {Object.keys(CitiesEnum).map((current) => <LocationsItem city={current} key={current} selectedCity={city === current} setCity={setCity}/>)}
+              {Object.keys(CitiesEnum).map((current) => <LocationsItem city={current} key={current} selectedCity={city === current}/>)}
             </ul>
           </section>
         </div>
