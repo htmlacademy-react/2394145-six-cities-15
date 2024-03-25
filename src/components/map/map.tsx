@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import {useMap} from '../hooks/use-map';
 
 type MapProps = {
-  city: City | null;
+  city: City;
   points: OffersDataType[];
   selectedPoint: string | undefined;
 };
@@ -25,9 +25,14 @@ const currentCustomIcon = new Icon({
 
 export function Map(props: MapProps): JSX.Element {
   const {city, points, selectedPoint} = props;
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+
+  useEffect(() => {
+    if (map) {
+      map.setView([city.location.latitude, city.location.longitude], city?.location.zoom);
+    }
+  }, [city, map]);
 
   useEffect(() => {
     if (map) {

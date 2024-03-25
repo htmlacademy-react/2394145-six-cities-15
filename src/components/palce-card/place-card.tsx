@@ -12,7 +12,7 @@ function PlaceCard({offersData, setId}: PlaceCardProps): JSX.Element {
     <Link to={`/offer/${offersData.id}`}>
       <article className="cities__card place-card" onMouseOver={() => setId(offersData.id)}>
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={offersData.previewImage} width="260" height="200" alt="Place image"/>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">

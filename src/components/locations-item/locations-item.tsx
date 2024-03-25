@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { changeCity } from '../../store/action';
+import { offersSlice } from '../../store/reducer';
 
 type LocationsItemProps = {
   city: string;
@@ -10,7 +10,7 @@ export function LocationsItem({city, selectedCity}: LocationsItemProps):JSX.Elem
   const dispatch = useDispatch();
   return (
     <li className="locations__item">
-      <a className={`locations__item-link tabs__item ${selectedCity && 'tabs__item--active'}`} onClick={() => dispatch(changeCity(city))}>
+      <a className={`locations__item-link tabs__item ${selectedCity && 'tabs__item--active'}`} onClick={() => dispatch(offersSlice.actions.setCity(city))}>
         <span>{city}</span>
       </a>
     </li>

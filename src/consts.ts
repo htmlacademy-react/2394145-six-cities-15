@@ -2,7 +2,8 @@ export enum AppRoute {
   Favorites = '/favorites',
   Login = '/login',
   Main = '/',
-  Offer = '/offer/:id'
+  Offer = '/offer/:id',
+  NotFound = '/NotFound'
 }
 
 export enum AuthorizationStatus {
@@ -18,6 +19,12 @@ export enum CitiesEnum {
   Amsterdam = 'Amsterdam',
   Hamburg ='Hamburg',
   Dusseldorf = 'Dusseldorf'
+}
+
+export enum LoadingStatus {
+  Loading = 'Loading',
+  Succes = 'Succes',
+  Reject = 'Reject'
 }
 
 export const RatingTitle: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];

@@ -1,3 +1,5 @@
+import { LoadingStatus } from './consts';
+
 export type City = {
   name: string;
   location: Location;
@@ -26,5 +28,6 @@ export type OffersDataType = {
 export type InitialStateType = {
       city: string;
       offers: OffersDataType[];
+      status: LoadingStatus | undefined;
     };
 
