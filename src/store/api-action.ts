@@ -7,8 +7,8 @@ type ExtraType = {
   extra: AxiosInstance;
 }
 
-export const fetchGet = createAsyncThunk<OffersDataType[], void, ExtraType>(
-  'offers/fetchOffers',
+export const getOffers = createAsyncThunk<OffersDataType[], void, ExtraType>(
+  'offers/get-offers',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<OffersDataType[]>('/offers');
     dispatch(offersSlice.actions.setOffers(data));

@@ -9,13 +9,13 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { fetchGet } from '../../store/api-action';
+import { getOffers } from '../../store/api-action';
 
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchGet());
+    dispatch(getOffers());
   }, [dispatch]);
 
   const offers = useAppSelector((state) => state.offers.offers);

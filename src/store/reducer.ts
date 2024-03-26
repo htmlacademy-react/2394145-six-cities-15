@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_CITY, LoadingStatus } from '../consts';
-import { InitialStateType } from '../types';
-import { fetchGet } from './api-action';
+import { InitialStateType, OffersDataType } from '../types';
+import { getOffers } from './api-action';
 
 const initialState: InitialStateType = {
   city: DEFAULT_CITY,
@@ -13,19 +13,19 @@ export const offersSlice = createSlice({
   name: 'offers',
   initialState,
   reducers: {
-    setOffers: (state, action) => {
+    setOffers: (state, action: PayloadAction<OffersDataType[]>) => {
       state.offers = action.payload;
     },
-    setCity: (state, action) => {
-      state.city = action.payload
+    setCity: (state, action: PayloadAction<string>) => {
+      state.city = action.payload;
     }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchGet.pending, (state) => {
+      .addCase(getOffers.pending, (state) => {
         state.status = LoadingStatus.Loading;
       })
-      .addCase(fetchGet.fulfilled, (state,action) => {
+      .addCase(getOffers.fulfilled, (state,action) => {
         state.offers = action.payload;
         state.status = LoadingStatus.Succes;
       });

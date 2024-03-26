@@ -1,11 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { OfferPremium } from '../../components/offer-premium/offer-premium';
 import { ReviewsForm } from '../../components/reviews-form/reviews-form';
 import { useAppSelector } from '../../hooks';
-import { AppRoute, LoadingStatus } from '../../consts';
+import { LoadingStatus } from '../../consts';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 
 function OfferPage(): JSX.Element | undefined {
@@ -281,7 +282,7 @@ function OfferPage(): JSX.Element | undefined {
       </div>
     );
   } if (offer === undefined && status === LoadingStatus.Succes) {
-    return <Navigate to={AppRoute.NotFound}/>;
+    return <NotFoundPage/>;
   }
 
 
