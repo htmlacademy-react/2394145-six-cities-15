@@ -1,20 +1,35 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, setOffers } from './action';
-import { DEFAULT_CITY } from '../consts';
-import { InitialStateType } from '../types';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { DEFAULT_CITY, LoadingStatus } from '../consts';
+import { InitialStateType, OffersDataType } from '../types';
+import { getOffers } from './api-action';
 
 const initialState: InitialStateType = {
   city: DEFAULT_CITY,
-  offers: []
+  offers: [],
+  status: undefined
 };
 
-export const reducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(changeCity, (state, action) => {
-      state.city = action.payload;
-    })
-    .addCase(setOffers, (state, action) => {
+export const offersSlice = createSlice({
+  name: 'offers',
+  initialState,
+  reducers: {
+    setOffers: (state, action: PayloadAction<OffersDataType[]>) => {
       state.offers = action.payload;
-    });
+    },
+    setCity: (state, action: PayloadAction<string>) => {
+      state.city = action.payload;
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getOffers.pending, (state) => {
+        state.status = LoadingStatus.Loading;
+      })
+      .addCase(getOffers.fulfilled, (state,action) => {
+        state.offers = action.payload;
+        state.status = LoadingStatus.Succes;
+      });
+  }
 });
+
 

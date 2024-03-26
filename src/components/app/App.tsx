@@ -9,18 +9,16 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { setOffers } from '../../store/action';
-import { offersData } from '../../mocks/offers';
+import { getOffers } from '../../store/api-action';
 
 
 function App(): JSX.Element {
-
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((state) => state.offers);
-
   useEffect(() => {
-    dispatch(setOffers(offersData));
+    dispatch(getOffers());
   }, [dispatch]);
+
+  const offers = useAppSelector((state) => state.offers.offers);
 
   return (
     <HelmetProvider>
@@ -28,7 +26,7 @@ function App(): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offersData={offers} />}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
@@ -36,7 +34,7 @@ function App(): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage offersData={offers}/>}
+            element={<OfferPage/>}
           />
           <Route
             path={AppRoute.Favorites}

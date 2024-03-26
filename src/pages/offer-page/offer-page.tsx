@@ -1,21 +1,23 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { OfferPremium } from '../../components/offer-premium/offer-premium';
 import { ReviewsForm } from '../../components/reviews-form/reviews-form';
-import { OffersDataType } from '../../types';
+import { useAppSelector } from '../../hooks';
+import { LoadingStatus } from '../../consts';
+import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
+import NotFoundPage from '../not-found-page/not-found-page';
 
-type OfferPageProps = {
-  offersData: OffersDataType[];
-}
 
-function OfferPage({offersData}: OfferPageProps): JSX.Element | undefined {
+function OfferPage(): JSX.Element | undefined {
   const {id} = useParams();
-  const offer = offersData.find((item) => item.id === id);
+  const offers = useAppSelector((state) => state.offers.offers);
+  const status = useAppSelector((state) => state.offers.status);
+  const offer = offers.find((item) => item.id === id);
 
-  if (offer === undefined) {
-    return <Navigate to='/NotFound' />;
-  } else {
+  if (offer === undefined && status === LoadingStatus.Loading) {
+    return <LoadingSpinner/>;
+  } if (offer !== undefined && status === LoadingStatus.Succes) {
     return (
       <div className="page">
         <Helmet>
@@ -279,6 +281,8 @@ function OfferPage({offersData}: OfferPageProps): JSX.Element | undefined {
         </main>
       </div>
     );
+  } if (offer === undefined && status === LoadingStatus.Succes) {
+    return <NotFoundPage/>;
   }
 
 

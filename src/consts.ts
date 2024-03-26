@@ -20,6 +20,12 @@ export enum CitiesEnum {
   Dusseldorf = 'Dusseldorf'
 }
 
+export enum LoadingStatus {
+  Loading = 'Loading',
+  Succes = 'Succes',
+  Reject = 'Reject'
+}
+
 export const RatingTitle: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
 export const URL_MARKER_DEFAULT =

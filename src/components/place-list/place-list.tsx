@@ -4,18 +4,17 @@ import { Map } from '../map/map';
 import { City, OffersDataType } from '../../types';
 
 type PlaceListProps = {
-  city: City | null;
+  city: City;
   offersData: OffersDataType[];
 }
 
 export function PlaceList ({offersData, city}: PlaceListProps): JSX.Element {
   const [id, setId] = useState('');
-
   return (
     <>
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offersData.length} place{offersData.length > 1 && 's'} to stay in Amsterdam</b>
+        <b className="places__found">{offersData.length} place{offersData.length > 1 && 's'} to stay in {city?.name}</b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
           <span className="places__sorting-type" tabIndex={0}>

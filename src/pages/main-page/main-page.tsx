@@ -3,17 +3,15 @@ import Header from '../../components/header/header';
 import { PlaceList } from '../../components/place-list/place-list';
 import { LocationsItem } from '../../components/locations-item/locations-item';
 import { MainEmpty } from '../../components/main-empty/main-empty';
-import { OffersDataType } from '../../types';
-import { CitiesEnum } from '../../consts';
+import { CitiesEnum, LoadingStatus } from '../../consts';
 import { useAppSelector } from '../../hooks';
+import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
 
-type MainProps = {
-  offersData: OffersDataType[];
-}
-
-function MainPage({offersData}: MainProps): JSX.Element {
-  const city = useAppSelector((state) => state.city);
-  const selectedOffers = offersData.filter((current) => current.city.name === city);
+function MainPage(): JSX.Element {
+  const city = useAppSelector((state) => state.offers.city);
+  const offers = useAppSelector((state) => state.offers.offers);
+  const selectedOffers = offers.filter((current) => current.city.name === city);
+  const loadingStatus = useAppSelector((state) => state.offers.status);
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -31,7 +29,9 @@ function MainPage({offersData}: MainProps): JSX.Element {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            {selectedOffers.length !== 0 ? <PlaceList offersData={selectedOffers} city={selectedOffers !== undefined ? selectedOffers[0].city : null}/> : <MainEmpty/>}
+            {loadingStatus === LoadingStatus.Loading ? <LoadingSpinner/> : null}
+            {selectedOffers.length !== 0 && loadingStatus === LoadingStatus.Succes ? <PlaceList offersData={selectedOffers} city={selectedOffers[0].city}/> : null}
+            {selectedOffers.length === 0 && loadingStatus === LoadingStatus.Succes ? <MainEmpty/> : null}
           </div>
         </div>
       </main>

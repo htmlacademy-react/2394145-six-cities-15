@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { OffersDataType } from '../../types';
+import { PremiumMark } from '../premium-mark/premium-mark';
 
 type PlaceCardProps = {
   offersData: OffersDataType;
@@ -11,8 +12,9 @@ function PlaceCard({offersData, setId}: PlaceCardProps): JSX.Element {
   return (
     <Link to={`/offer/${offersData.id}`}>
       <article className="cities__card place-card" onMouseOver={() => setId(offersData.id)}>
+        {offersData.isPremium ? <PremiumMark/> : null}
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={offersData.previewImage} width="260" height="200" alt="Place image"/>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
