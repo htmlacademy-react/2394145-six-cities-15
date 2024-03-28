@@ -3,7 +3,6 @@ import Header from '../../components/header/header';
 import { FavoritesList } from '../../components/favorites-list/favorites-list';
 import { OffersDataType } from '../../types';
 
-
 type FavoritesPageProps = {
   offersData: OffersDataType[];
 }

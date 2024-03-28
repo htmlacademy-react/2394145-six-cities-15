@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { offersSlice } from '../../store/reducer';
+import { offersSlice } from '../../store/slices/offers';
 
 type LocationsItemProps = {
   city: string;
