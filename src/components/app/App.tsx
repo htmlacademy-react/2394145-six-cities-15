@@ -9,7 +9,8 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { getOffers } from '../../store/api-action';
+import { checkAuth, getOffers } from '../../store/api-action';
+import { LoadingSpinner } from '../loading-spinner/loading-spinner';
 
 
 function App(): JSX.Element {
@@ -19,7 +20,15 @@ function App(): JSX.Element {
   }, [dispatch]);
 
   const offers = useAppSelector((state) => state.offers.offers);
+  const authorizationStatus = useAppSelector((state) => state.user.status);
 
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown) {
+    return <LoadingSpinner/>;
+  }
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -39,7 +48,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <FavoritesPage offersData={offers}/>
               </PrivateRoute>
             }

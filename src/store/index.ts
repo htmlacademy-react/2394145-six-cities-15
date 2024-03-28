@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { offersSlice } from './reducer';
+import { offersSlice } from './slices/offers';
 import { createAPI } from '../services/api';
+import { userSlice } from './slices/user';
 
 export const api = createAPI();
 
 export const store = configureStore({
   reducer: {
-    offers: offersSlice.reducer
+    offers: offersSlice.reducer,
+    user: userSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

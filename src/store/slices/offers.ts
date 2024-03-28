@@ -1,12 +1,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { DEFAULT_CITY, LoadingStatus } from '../consts';
-import { InitialStateType, OffersDataType } from '../types';
-import { getOffers } from './api-action';
+import { AuthorizationStatus, DEFAULT_CITY, LoadingStatus } from '../../consts';
+import { OffersInitialStateType, OffersDataType } from '../../types';
+import { getOffers } from '../api-action';
 
-const initialState: InitialStateType = {
+const initialState: OffersInitialStateType = {
   city: DEFAULT_CITY,
   offers: [],
-  status: undefined
+  status: undefined,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 export const offersSlice = createSlice({

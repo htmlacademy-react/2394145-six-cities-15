@@ -1,4 +1,4 @@
-import { LoadingStatus } from './consts';
+import { AuthorizationStatus, LoadingStatus } from './consts';
 
 export type City = {
   name: string;
@@ -24,10 +24,34 @@ export type OffersDataType = {
     previewImage: string;
     };
 
+export type OfferInitialStateType = {
+    offer: OffersDataType | null;
+    nearby: OffersDataType[];
+    status: LoadingStatus | undefined;
+};
 
-export type InitialStateType = {
-      city: string;
-      offers: OffersDataType[];
-      status: LoadingStatus | undefined;
-    };
+export type OffersInitialStateType = {
+    city: string;
+    offers: OffersDataType[];
+    status: LoadingStatus | undefined;
+    authorizationStatus: AuthorizationStatus;
+  };
 
+export type User = {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+    email: string;
+    token: string;
+};
+
+export type UserInitialStateType ={
+  user: User | null;
+  requestStatus: LoadingStatus | undefined;
+  status: AuthorizationStatus;
+}
+
+export type LoginData = {
+  email: string;
+  password: string;
+}

@@ -8,7 +8,6 @@ import { LoadingStatus } from '../../consts';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
 import NotFoundPage from '../not-found-page/not-found-page';
 
-
 function OfferPage(): JSX.Element | undefined {
   const {id} = useParams();
   const offers = useAppSelector((state) => state.offers.offers);
