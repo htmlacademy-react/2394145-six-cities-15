@@ -4,16 +4,17 @@ import { PremiumMark } from '../premium-mark/premium-mark';
 
 type PlaceCardProps = {
   offersData: OffersDataType;
-  setId: (key: string) => void;
+  setId?: (key: string) => void;
+  type?: string;
 }
 
-function PlaceCard({offersData, setId}: PlaceCardProps): JSX.Element {
+function PlaceCard({offersData, setId, type}: PlaceCardProps): JSX.Element {
 
   return (
     <Link to={`/offer/${offersData.id}`}>
-      <article className="cities__card place-card" onMouseOver={() => setId(offersData.id)}>
+      <article className={type === 'nearby' ? 'near-places__card place-card' : 'cities__card place-card'} onMouseOver={() => setId(offersData.id)}>
         {offersData.isPremium ? <PremiumMark/> : null}
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={type === 'nearby' ? 'near-places__image-wrapper place-card__image-wrapper' : 'cities__image-wrapper place-card__image-wrapper'}>
           <img className="place-card__image" src={offersData.previewImage} width="260" height="200" alt="Place image"/>
         </div>
         <div className="place-card__info">

@@ -55,3 +55,27 @@ export type LoginData = {
   email: string;
   password: string;
 }
+
+export type Comment = {
+  id: string;
+  date: string;
+  user: {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+  };
+  comment: string;
+  rating: number;
+};
+
+export type CommentsInitialState = {
+  id: string;
+  comments: Comment[];
+  status: LoadingStatus | undefined;
+}
+
+export type CommentData = {
+  id: string;
+  comment: string;
+  rating: number;
+};
