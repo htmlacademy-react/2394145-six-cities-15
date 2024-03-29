@@ -33,8 +33,7 @@ export type OfferInitialStateType = {
 export type OffersInitialStateType = {
     city: string;
     offers: OffersDataType[];
-    status: LoadingStatus | undefined;
-    authorizationStatus: AuthorizationStatus;
+    loadingStatus: LoadingStatus | undefined;
   };
 
 export type User = {

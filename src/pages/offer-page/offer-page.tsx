@@ -20,10 +20,10 @@ function OfferPage(): JSX.Element | undefined {
     dispatch(getOffer(id));
     dispatch(getOffersNearby(id));
     dispatch(getOfferComments(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const offers = useAppSelector((state) => state.offers.offers);
-  const status = useAppSelector((state) => state.offers.status);
+  const status = useAppSelector((state) => state.offers.loadingStatus);
   const offer = offers.find((item) => item.id === id);
   const offersNearby = useAppSelector((state) => state.offer.nearby);
   const comments = useAppSelector((state) => state.comments.comments);
