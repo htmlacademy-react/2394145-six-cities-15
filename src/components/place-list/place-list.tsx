@@ -34,8 +34,9 @@ export function PlaceList ({offersData, city}: PlaceListProps): JSX.Element {
           {offersData.map((curent) => <PlaceCard key={curent.id} offersData={curent} setId={setId} />)}
         </div>
       </section>
-      <Map city={city} points={offersData} selectedPoint={id}/>
-
+      <div className="cities__right-section">
+        <Map city={city} points={offersData} selectedPoint={id}/>
+      </div>
     </>
   );
 }

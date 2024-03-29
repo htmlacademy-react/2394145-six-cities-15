@@ -1,13 +1,14 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import {City, OffersDataType} from '../../types';
+import {City, OfferDataType, OffersDataType} from '../../types';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../consts';
 import 'leaflet/dist/leaflet.css';
 import {useMap} from '../hooks/use-map';
 
 type MapProps = {
+  className?: string;
   city: City;
-  points: OffersDataType[];
+  points: (OffersDataType | OfferDataType | null)[] ;
   selectedPoint: string | undefined;
 };
 
@@ -23,8 +24,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-export function Map(props: MapProps): JSX.Element {
-  const {city, points, selectedPoint} = props;
+export function Map({className = 'cities__map map', city, points, selectedPoint}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -38,18 +38,20 @@ export function Map(props: MapProps): JSX.Element {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
-        const marker = new Marker({
-          lat: point.location.latitude,
-          lng: point.location.longitude
-        });
+        if (point !== null) {
+          const marker = new Marker({
+            lat: point.location.latitude,
+            lng: point.location.longitude
+          });
 
-        marker
-          .setIcon(
-            point.id === selectedPoint
-              ? currentCustomIcon
-              : defaultCustomIcon
-          )
-          .addTo(markerLayer);
+          marker
+            .setIcon(
+              point.id === selectedPoint
+                ? currentCustomIcon
+                : defaultCustomIcon
+            )
+            .addTo(markerLayer);
+        }
       });
 
       return () => {
@@ -59,14 +61,12 @@ export function Map(props: MapProps): JSX.Element {
   }, [map, points, selectedPoint]);
 
   return (
-    <div className="cities__right-section">
-      <section
-        className="cities__map map"
-        style={{minHeight: '500px'}}
-        ref={mapRef}
-      >
-      </section>
-    </div>
+    <section
+      className={`${className} map`}
+      style={{minHeight: '500px'}}
+      ref={mapRef}
+    >
+    </section>
   );
 }
 
