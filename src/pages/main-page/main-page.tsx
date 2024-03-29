@@ -11,7 +11,7 @@ function MainPage(): JSX.Element {
   const city = useAppSelector((state) => state.offers.city);
   const offers = useAppSelector((state) => state.offers.offers);
   const selectedOffers = offers.filter((current) => current.city.name === city);
-  const loadingStatus = useAppSelector((state) => state.offers.status);
+  const loadingStatus = useAppSelector((state) => state.offers.loadingStatus);
   return (
     <div className="page page--gray page--main">
       <Helmet>

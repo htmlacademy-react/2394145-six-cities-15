@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { LoginData, OffersDataType, User } from '../types';
+import { Comment, CommentData, LoginData, OffersDataType, User } from '../types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { offersSlice } from './slices/offers';
 import { dropToken, saveToken } from '../services/token';
@@ -39,5 +39,38 @@ export const logout = createAsyncThunk<unknown, undefined, ExtraType>(
   async (_, {extra: api}) => {
     await api.delete('/logout');
     dropToken();
+  }
+);
+
+export const getOffer = createAsyncThunk<OffersDataType, string | undefined, ExtraType>(
+  'offers/get-offer',
+  async (offerID, {extra: api}) => {
+    const {data} = await api.get<OffersDataType>(`/offers/${offerID}`);
+    return data;
+  }
+);
+
+export const getOffersNearby = createAsyncThunk<OffersDataType[], string | undefined, ExtraType>(
+  'offers/get-offer-nearby',
+  async (offerID, {extra: api}) => {
+    const {data} = await api.get<OffersDataType[]>(`/offers/${offerID}/nearby`);
+    return data;
+  }
+);
+
+export const getOfferComments = createAsyncThunk<Comment[], string | undefined, ExtraType>(
+  'comments/get-offer-comments',
+  async (offerID, {extra: api}) => {
+    const {data} = await api.get<Comment[]>(`/comments/${offerID}`);
+    return data;
+  }
+);
+
+
+export const postOfferComments = createAsyncThunk<Comment, CommentData, ExtraType>(
+  'comments/post-offer-comments',
+  async ({id, comment, rating}, {extra: api}) => {
+    const {data} = await api.post<Comment>(`/comments/${id}`, {comment, rating});
+    return data;
   }
 );

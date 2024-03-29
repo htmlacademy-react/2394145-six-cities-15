@@ -1,13 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AuthorizationStatus, DEFAULT_CITY, LoadingStatus } from '../../consts';
+import { DEFAULT_CITY, LoadingStatus } from '../../consts';
 import { OffersInitialStateType, OffersDataType } from '../../types';
 import { getOffers } from '../api-action';
 
 const initialState: OffersInitialStateType = {
   city: DEFAULT_CITY,
   offers: [],
-  status: undefined,
-  authorizationStatus: AuthorizationStatus.Unknown
+  loadingStatus: undefined,
 };
 
 export const offersSlice = createSlice({
@@ -24,11 +23,11 @@ export const offersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getOffers.pending, (state) => {
-        state.status = LoadingStatus.Loading;
+        state.loadingStatus = LoadingStatus.Loading;
       })
       .addCase(getOffers.fulfilled, (state,action) => {
         state.offers = action.payload;
-        state.status = LoadingStatus.Succes;
+        state.loadingStatus = LoadingStatus.Succes;
       });
   }
 });
