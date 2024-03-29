@@ -42,7 +42,7 @@ export const logout = createAsyncThunk<unknown, undefined, ExtraType>(
   }
 );
 
-export const getOffer = createAsyncThunk<OffersDataType, string, ExtraType>(
+export const getOffer = createAsyncThunk<OffersDataType, string | undefined, ExtraType>(
   'offers/get-offer',
   async (offerID, {extra: api}) => {
     const {data} = await api.get<OffersDataType>(`/offers/${offerID}`);
@@ -50,7 +50,7 @@ export const getOffer = createAsyncThunk<OffersDataType, string, ExtraType>(
   }
 );
 
-export const getOffersNearby = createAsyncThunk<OffersDataType[], string, ExtraType>(
+export const getOffersNearby = createAsyncThunk<OffersDataType[], string | undefined, ExtraType>(
   'offers/get-offer-nearby',
   async (offerID, {extra: api}) => {
     const {data} = await api.get<OffersDataType[]>(`/offers/${offerID}/nearby`);
@@ -58,7 +58,7 @@ export const getOffersNearby = createAsyncThunk<OffersDataType[], string, ExtraT
   }
 );
 
-export const getOfferComments = createAsyncThunk<Comment[], string, ExtraType>(
+export const getOfferComments = createAsyncThunk<Comment[], string | undefined, ExtraType>(
   'comments/get-offer-comments',
   async (offerID, {extra: api}) => {
     const {data} = await api.get<Comment[]>(`/comments/${offerID}`);

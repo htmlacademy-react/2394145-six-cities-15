@@ -3,11 +3,10 @@ import Header from '../../components/header/header';
 import { useParams } from 'react-router-dom';
 import { OfferPremium } from '../../components/offer-premium/offer-premium';
 import { ReviewsForm } from '../../components/reviews-form/reviews-form';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LoadingStatus } from '../../consts';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
 import NotFoundPage from '../not-found-page/not-found-page';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getOffer, getOfferComments, getOffersNearby } from '../../store/api-action';
 import PlaceCard from '../../components/palce-card/place-card';
@@ -15,7 +14,7 @@ import { Rewiew } from '../../components/review/review';
 
 function OfferPage(): JSX.Element | undefined {
   const {id} = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getOffer(id));

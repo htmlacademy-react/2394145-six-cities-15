@@ -75,7 +75,7 @@ export type CommentsInitialState = {
 }
 
 export type CommentData = {
-  id: string;
+  id: string | undefined;
   comment: string;
   rating: number;
 };

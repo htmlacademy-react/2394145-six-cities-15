@@ -1,8 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { ReviewsFormStars } from '../reviews-form-stars/reviews-form-stars';
 import { AuthorizationStatus, RatingTitle } from '../../consts';
-import { useAppSelector } from '../../hooks';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getOfferComments, postOfferComments } from '../../store/api-action';
 
 type RewiewFormPropsType ={
@@ -10,7 +9,7 @@ type RewiewFormPropsType ={
 }
 
 export function ReviewsForm({offerId}: RewiewFormPropsType): JSX.Element | undefined {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const status = useAppSelector((state) => state.user.status);
   const [review, setReview] = useState({
     comment: '',
