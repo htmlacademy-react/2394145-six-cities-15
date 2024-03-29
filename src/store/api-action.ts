@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { Comment, CommentData, LoginData, OffersDataType, User } from '../types';
+import { Comment, CommentData, LoginData, OfferDataType, OffersDataType, User } from '../types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { offersSlice } from './slices/offers';
 import { dropToken, saveToken } from '../services/token';
@@ -42,10 +42,10 @@ export const logout = createAsyncThunk<unknown, undefined, ExtraType>(
   }
 );
 
-export const getOffer = createAsyncThunk<OffersDataType, string | undefined, ExtraType>(
+export const getOffer = createAsyncThunk<OfferDataType, string | undefined, ExtraType>(
   'offers/get-offer',
   async (offerID, {extra: api}) => {
-    const {data} = await api.get<OffersDataType>(`/offers/${offerID}`);
+    const {data} = await api.get<OfferDataType>(`/offers/${offerID}`);
     return data;
   }
 );
