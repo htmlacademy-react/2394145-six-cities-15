@@ -6,7 +6,7 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export const useAppSelector: TypedUseSelectorHook<State> = useSelector;
 
-export function useSortOffers(offers: OffersDataType, type: string): OffersDataType[] {
+export function useSortOffers(offers: OffersDataType[], type: string): OffersDataType[] {
   const sortOffers: OffersDataType[] = [...offers];
   switch(type) {
     case 'Price: low to high':
