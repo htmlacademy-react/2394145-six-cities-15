@@ -17,7 +17,7 @@ export function FavoritesLocationsItems({offersData}: FavoritesLocationsItemsPro
         </div>
       </div>
       <div className="favorites__places">
-        {offersData.map((current) => <FavoritesCard key={current.id} offersData={current}/>)}
+        {offersData.map((current) => current.isFavorite && <FavoritesCard key={current.id} offersData={current}/>)}
       </div>
     </li>
   );

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { ReviewsFormStars } from '../reviews-form-stars/reviews-form-stars';
-import { AuthorizationStatus, RatingTitle } from '../../consts';
+import { AuthorizationStatus, MIN_REVIEW_LENGTH, RatingTitle } from '../../consts';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getOfferComments, postOfferComments } from '../../store/api-action';
 
@@ -57,7 +57,7 @@ export function ReviewsForm({offerId}: RewiewFormPropsType): JSX.Element | undef
           <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           </p>
-          <button className="reviews__submit form__submit button" type="submit" disabled={review.comment.length < 50 || review.rating < 1}>Submit</button>
+          <button className="reviews__submit form__submit button" type="submit" disabled={review.comment.length < MIN_REVIEW_LENGTH || review.rating < 1}>Submit</button>
         </div>
       </form>
     );

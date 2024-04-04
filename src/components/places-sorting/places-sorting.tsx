@@ -17,7 +17,7 @@ export function PlacesSorting({setSortingType, sortingType}: PlacesSortingType):
           <use xlinkHref="#icon-arrow-select" ></use>
         </svg>
       </span>
-      {visible ? <PlacesOptions setSortingType={setSortingType}/> : null}
+      {visible ? <PlacesOptions setSortingType={setSortingType} sortingType={sortingType} setVisible={setVisible}/> : null}
     </form>
   );
 }

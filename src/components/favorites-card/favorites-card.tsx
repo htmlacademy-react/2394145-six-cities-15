@@ -12,7 +12,7 @@ export function FavoritesCard({offersData}: FavoritesCardProps): JSX.Element {
       {offersData.isPremium ? <PremiumMark/> : undefined}
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offersData.id}`}>
-          <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image"/>
+          <img className="place-card__image" src={offersData.previewImage} width="150" height="110" alt="Place image"/>
         </Link>
       </div>
       <div className="favorites__card-info place-card__info">
