@@ -1,13 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import { FavoritesList } from '../../components/favorites-list/favorites-list';
-import { OffersDataType } from '../../types';
+import { useEffect } from 'react';
+import { getFavoriteOffers } from '../../store/api-action';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
-type FavoritesPageProps = {
-  offersData: OffersDataType[];
-}
+function FavoritesPage(): JSX.Element {
+  const dispatch = useAppDispatch();
 
-function FavoritesPage({offersData}: FavoritesPageProps): JSX.Element {
+  useEffect(() => {
+    dispatch(getFavoriteOffers());
+  }, [dispatch]);
+
+  const offersData = useAppSelector((state) => state.favorite.offers);
   return (
     <div className="page">
       <Helmet>

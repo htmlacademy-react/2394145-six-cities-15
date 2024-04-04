@@ -19,7 +19,6 @@ function App(): JSX.Element {
     dispatch(getOffers());
   }, [dispatch]);
 
-  const offers = useAppSelector((state) => state.offers.offers);
   const authorizationStatus = useAppSelector((state) => state.user.status);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ function App(): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <FavoritesPage offersData={offers}/>
+                <FavoritesPage />
               </PrivateRoute>
             }
           />

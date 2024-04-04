@@ -3,7 +3,7 @@ import Header from '../../components/header/header';
 import { useParams } from 'react-router-dom';
 import { OfferPremium } from '../../components/offer-premium/offer-premium';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { LoadingStatus } from '../../consts';
+import { LoadingStatus, MAX_NEARBY_COUNT } from '../../consts';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { useEffect } from 'react';
@@ -27,7 +27,7 @@ function OfferPage(): JSX.Element | undefined {
 
   const status = useAppSelector((state) => state.offer.status);
   const offer = useAppSelector((state) => state.offer.offer);
-  const offersNearby = useAppSelector((state) => state.offer.nearby);
+  const offersNearby = useAppSelector((state) => state.offer.nearby.slice(0, MAX_NEARBY_COUNT));
   const nearOffersPlusCurrent = [offer, ...offersNearby];
   const comments = useAppSelector((state) => state.comments.comments);
 

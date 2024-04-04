@@ -3,6 +3,7 @@ import { Comment, CommentData, LoginData, OfferDataType, OffersDataType, User } 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { offersSlice } from './slices/offers';
 import { dropToken, saveToken } from '../services/token';
+import { favoriteSlice } from './slices/favorite';
 
 type ExtraType = {
   extra: AxiosInstance;
@@ -73,4 +74,13 @@ export const postOfferComments = createAsyncThunk<Comment, CommentData, ExtraTyp
     const {data} = await api.post<Comment>(`/comments/${id}`, {comment, rating});
     return data;
   }
+);
+
+export const getFavoriteOffers = createAsyncThunk<OffersDataType[], void, ExtraType>(
+  'favorite/get-favorite',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<OffersDataType[]>('/favorite');
+    dispatch(favoriteSlice.actions.setFavoriteOffers(data));
+    return data;
+  },
 );

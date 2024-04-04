@@ -103,3 +103,8 @@ export type CommentData = {
   comment: string;
   rating: number;
 };
+
+export type FavoriteInitialStateType = {
+  offers: OffersDataType[];
+  loadingStatus: LoadingStatus | undefined;
+};

@@ -26,6 +26,13 @@ export enum LoadingStatus {
   Reject = 'Reject'
 }
 
+export enum SortingTypes {
+  Popular ='Popular',
+  Price_to_high = 'Price: low to high',
+  Price_to_low = 'Price: high to low',
+  Rated_first = 'Top rated first'
+}
+
 export const RatingTitle: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
 export const URL_MARKER_DEFAULT =
@@ -35,3 +42,7 @@ export const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
 export const DEFAULT_CITY = 'Paris';
+
+export const MIN_REVIEW_LENGTH = 50;
+
+export const MAX_NEARBY_COUNT = 3;
