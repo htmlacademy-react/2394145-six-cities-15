@@ -45,4 +45,6 @@ export const DEFAULT_CITY = 'Paris';
 
 export const MIN_REVIEW_LENGTH = 50;
 
+export const MAX_REVIEW_LENGTH = 300;
+
 export const MAX_NEARBY_COUNT = 3;
