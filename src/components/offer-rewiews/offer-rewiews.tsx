@@ -8,11 +8,14 @@ type OfferRewiewsType = {
 }
 
 export function OfferRewiews({comments, id}: OfferRewiewsType): JSX.Element {
+  const sortedComments = [...comments].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const newComments = sortedComments.slice(0, 10);
+
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
       <ul className="reviews__list">
-        {comments.map((curent) => <Rewiew key={curent.id} rewiew={curent}/>)}
+        {newComments.map((curent) => <Rewiew key={curent.id} rewiew={curent}/>)}
       </ul>
       <ReviewsForm offerId={id}/>
     </section>

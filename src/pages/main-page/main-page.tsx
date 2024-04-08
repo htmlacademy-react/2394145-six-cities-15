@@ -4,16 +4,24 @@ import { PlaceList } from '../../components/place-list/place-list';
 import { LocationsItem } from '../../components/locations-item/locations-item';
 import { MainEmpty } from '../../components/main-empty/main-empty';
 import { CitiesEnum, LoadingStatus } from '../../consts';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
+import { useEffect } from 'react';
+import { getOffers } from '../../store/api-action';
 
 function MainPage(): JSX.Element {
   const city = useAppSelector((state) => state.offers.city);
   const offers = useAppSelector((state) => state.offers.offers);
   const selectedOffers = offers.filter((current) => current.city.name === city);
   const loadingStatus = useAppSelector((state) => state.offers.loadingStatus);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getOffers());
+  }, [dispatch]);
+
   return (
-    <div className="page page--gray page--main">
+    <div className={`page page--gray page--main ${selectedOffers.length === 0 && loadingStatus === LoadingStatus.Succes ? 'page__main--index-empty' : null}`}>
       <Helmet>
         <title>6 cities: offer</title>
       </Helmet>
@@ -31,7 +39,7 @@ function MainPage(): JSX.Element {
           <div className="cities__places-container container">
             {loadingStatus === LoadingStatus.Loading ? <LoadingSpinner/> : null}
             {selectedOffers.length !== 0 && loadingStatus === LoadingStatus.Succes ? <PlaceList offersData={selectedOffers} city={selectedOffers[0].city}/> : null}
-            {selectedOffers.length === 0 && loadingStatus === LoadingStatus.Succes ? <MainEmpty/> : null}
+            {selectedOffers.length === 0 && loadingStatus === LoadingStatus.Succes ? <MainEmpty city={city}/> : null}
           </div>
         </div>
       </main>

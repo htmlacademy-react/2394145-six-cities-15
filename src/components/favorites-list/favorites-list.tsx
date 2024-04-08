@@ -11,11 +11,16 @@ export function FavoritesList({offersData}: FavoritesListProps): JSX.Element {
   const uniqueArrayCities = Array.from(uniqueSetCities);
 
   return (
-    <section className="favorites">
-      <h1 className="favorites__title">Saved listing</h1>
-      <ul className="favorites__list">
-        {uniqueArrayCities.map((current) => <FavoritesLocationsItems key={current} offersData={offersData.filter((item) => item.city.name === current)}/>)}
-      </ul>
-    </section>
+    <main className="page__main page__main--favorites">
+      <div className="page__favorites-container container">
+        <section className="favorites">
+          <h1 className="favorites__title">Saved listing</h1>
+          <ul className="favorites__list">
+            {uniqueArrayCities.map((current) => <FavoritesLocationsItems key={current} offersData={offersData.filter((item) => item.city.name === current)}/>)}
+          </ul>
+        </section>
+      </div>
+    </main>
+
   );
 }

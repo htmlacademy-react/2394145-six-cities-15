@@ -9,7 +9,7 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { checkAuth, getOffers } from '../../store/api-action';
+import { checkAuth, getFavoriteOffers, getOffers } from '../../store/api-action';
 import { LoadingSpinner } from '../loading-spinner/loading-spinner';
 
 
@@ -19,11 +19,15 @@ function App(): JSX.Element {
     dispatch(getOffers());
   }, [dispatch]);
 
-  const authorizationStatus = useAppSelector((state) => state.user.status);
-
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
+
+  const authorizationStatus = useAppSelector((state) => state.user.status);
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    dispatch(getFavoriteOffers());
+  }
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return <LoadingSpinner/>;

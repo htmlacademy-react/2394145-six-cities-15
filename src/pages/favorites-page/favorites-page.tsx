@@ -4,9 +4,13 @@ import { FavoritesList } from '../../components/favorites-list/favorites-list';
 import { useEffect } from 'react';
 import { getFavoriteOffers } from '../../store/api-action';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { FavoritesEmpty } from '../../components/favorites-empty/favorites-empty';
+import { LoadingStatus } from '../../consts';
+import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
 
 function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const loadingStatus = useAppSelector((state) => state.favorite.loadingStatus);
 
   useEffect(() => {
     dispatch(getFavoriteOffers());
@@ -14,16 +18,13 @@ function FavoritesPage(): JSX.Element {
 
   const offersData = useAppSelector((state) => state.favorite.offers);
   return (
-    <div className="page">
+    <div className={`page ${offersData.length < 1 && loadingStatus === LoadingStatus.Succes ? 'page--favorites-empty' : null}`}>
       <Helmet>
         <title>6 cities: favorites</title>
       </Helmet>
       <Header/>
-      <main className="page__main page__main--favorites">
-        <div className="page__favorites-container container">
-          <FavoritesList offersData={offersData}/>
-        </div>
-      </main>
+      {loadingStatus === LoadingStatus.Loading && offersData.length < 1 ? <LoadingSpinner/> : null}
+      {offersData.length < 1 && loadingStatus === LoadingStatus.Succes ? <FavoritesEmpty/> : <FavoritesList offersData={offersData}/>}
       <footer className="footer container">
         <a className="footer__logo-link" href="main.html">
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>

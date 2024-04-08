@@ -1,23 +1,25 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { OfferPremium } from '../../components/offer-premium/offer-premium';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { LoadingStatus, MAX_NEARBY_COUNT } from '../../consts';
+import {LoadingStatus, MAX_NEARBY_COUNT } from '../../consts';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
 import NotFoundPage from '../not-found-page/not-found-page';
-import { useEffect } from 'react';
-import { getOffer, getOfferComments, getOffersNearby } from '../../store/api-action';
+import { useEffect} from 'react';
+import { getOffer, getOfferComments, getOffersNearby} from '../../store/api-action';
 import { Map } from '../../components/map/map';
 import { OffersNearbyList } from '../../components/offers-nearby-list/offers-nearby-list';
 import { OfferGalery } from '../../components/offer-galery/offer-galery';
 import { OfferInsideItem } from '../../components/offer-inside-item/offer-inside-item';
 import { OfferHost } from '../../components/offer-host/offer-host';
 import { OfferRewiews } from '../../components/offer-rewiews/offer-rewiews';
+import { OfferBookmark } from '../../components/offer-bookmark/offer-bookmark';
 
 function OfferPage(): JSX.Element | undefined {
   const {id} = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getOffer(id));
@@ -27,14 +29,18 @@ function OfferPage(): JSX.Element | undefined {
 
   const status = useAppSelector((state) => state.offer.status);
   const offer = useAppSelector((state) => state.offer.offer);
-  const offersNearby = useAppSelector((state) => state.offer.nearby.slice(0, MAX_NEARBY_COUNT));
+  const offersNearby = useAppSelector((state) => state.offer.nearby).slice(0, MAX_NEARBY_COUNT);
   const nearOffersPlusCurrent = [offer, ...offersNearby];
   const comments = useAppSelector((state) => state.comments.comments);
 
 
   if (offer === null && status === LoadingStatus.Loading) {
     return <LoadingSpinner/>;
-  } if (offer !== null && status === LoadingStatus.Succes) {
+  }
+  if (offer === null && status === LoadingStatus.Reject) {
+    navigate('*');
+  }
+  if (offer !== null && status === LoadingStatus.Succes) {
     return (
       <div className="page">
         <Helmet>
@@ -51,16 +57,11 @@ function OfferPage(): JSX.Element | undefined {
                   <h1 className="offer__name">
                     {offer?.title}
                   </h1>
-                  <button className="offer__bookmark-button button" type="button" >
-                    <svg className="offer__bookmark-icon" width="31" height="33">
-                      <use xlinkHref="#icon-bookmark"></use>
-                    </svg>
-                    <span className="visually-hidden">To bookmarks</span>
-                  </button>
+                  <OfferBookmark offer={offer}/>
                 </div>
                 <div className="offer__rating rating">
                   <div className="offer__stars rating__stars">
-                    <span style={{width: `${offer.rating * 20}%` }}></span>
+                    <span style={{width: `${Math.round(offer.rating) * 20}%` }}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="offer__rating-value rating__value">{offer?.rating}</span>

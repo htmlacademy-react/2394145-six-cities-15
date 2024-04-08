@@ -20,8 +20,9 @@ function LoginPage(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    const passCheck = /^(?=.*\d)(?=.*[a-z])/;
 
-    if (emailRef.current !== null && passwordRef.current !== null) {
+    if (emailRef.current !== null && passwordRef.current !== null && passCheck.test(passwordRef.current.value)) {
       dispatch(login({
         email: emailRef.current.value,
         password: passwordRef.current.value
@@ -50,7 +51,7 @@ function LoginPage(): JSX.Element {
             <form className="login__form form" action="" method="post" onSubmit={handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" placeholder="Email" ref={emailRef} required/>
+                <input className="login__input form__input" type="email" name='email' placeholder="Email" ref={emailRef} required/>
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>

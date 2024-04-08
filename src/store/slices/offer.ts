@@ -13,7 +13,13 @@ const initialState: OfferInitialStateType = {
 export const offerSlice = createSlice({
   name: 'offer',
   initialState,
-  reducers: {},
+  reducers: {
+    refreshOffer: (state) => {
+      if (state.offer !== null){
+        state.offer.isFavorite = !state.offer?.isFavorite;
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getOffer.pending, (state) => {
@@ -22,6 +28,9 @@ export const offerSlice = createSlice({
       .addCase(getOffer.fulfilled, (state, action) => {
         state.offer = action.payload;
         state.status = LoadingStatus.Succes;
+      })
+      .addCase(getOffer.rejected, (state) => {
+        state.status = LoadingStatus.Reject;
       })
       .addCase(getOffersNearby.fulfilled, (state, action) => {
         state.nearby = action.payload;

@@ -84,3 +84,11 @@ export const getFavoriteOffers = createAsyncThunk<OffersDataType[], void, ExtraT
     return data;
   },
 );
+
+export const postFavoriteStatus = createAsyncThunk<OffersDataType, {id: string; status: boolean}, ExtraType>(
+  'favorite/post-favorite',
+  async ({id, status}, {extra: api}) => {
+    const {data} = await api.post<OffersDataType>(`/favorite/${id}/${status ? 0 : 1}`);
+    return data;
+  }
+);
