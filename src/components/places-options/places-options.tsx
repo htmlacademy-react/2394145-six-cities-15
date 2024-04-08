@@ -3,7 +3,7 @@ import { PlacesOption } from '../places-option/places-option';
 
 type PlacesOptionsType = {
   setSortingType: (key: string) => void;
-  sortingType: string;
+  sortingType: SortingTypes;
   setVisible: (key: boolean) => void;
 }
 

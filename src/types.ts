@@ -107,4 +107,5 @@ export type CommentData = {
 export type FavoriteInitialStateType = {
   offers: OffersDataType[];
   loadingStatus: LoadingStatus | undefined;
+  newOffer: OffersDataType | null;
 };

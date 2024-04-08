@@ -4,6 +4,7 @@ import { Map } from '../map/map';
 import { City, OffersDataType } from '../../types';
 import { PlacesSorting } from '../places-sorting/places-sorting';
 import { useSortOffers } from '../../hooks';
+import { SortingTypes } from '../../consts';
 
 type PlaceListProps = {
   city: City;
@@ -12,8 +13,9 @@ type PlaceListProps = {
 
 export function PlaceList ({offersData, city}: PlaceListProps): JSX.Element {
   const [id, setId] = useState('');
-  const [sortingType, setSortingType] = useState('Popular');
+  const [sortingType, setSortingType] = useState(SortingTypes.Popular);
   const newData = useSortOffers(offersData, sortingType);
+
   return (
     <>
       <section className="cities__places places">

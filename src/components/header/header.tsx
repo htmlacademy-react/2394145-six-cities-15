@@ -29,9 +29,9 @@ function Header(): JSX.Element {
                 </Link>
               </li>
               <li className="header__nav-item">
-                <Link className="header__nav-link" to={AppRoute.Main}>
+                <a className="header__nav-link">
                   {status === AuthorizationStatus.Auth ? <span className="header__signout" onClick={logoutFunction}>Sign out</span> : null}
-                </Link>
+                </a>
               </li>
             </ul>
           </nav>

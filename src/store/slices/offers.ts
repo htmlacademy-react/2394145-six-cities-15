@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_CITY, LoadingStatus } from '../../consts';
-import { OffersInitialStateType, OffersDataType } from '../../types';
+import { OffersInitialStateType, OffersDataType, OfferDataType } from '../../types';
 import { getOffers } from '../api-action';
 
 const initialState: OffersInitialStateType = {
@@ -18,6 +18,13 @@ export const offersSlice = createSlice({
     },
     setCity: (state, action: PayloadAction<string>) => {
       state.city = action.payload;
+    },
+    refreshCard: (state, action: PayloadAction<OfferDataType>) => {
+      state.offers.map((current) => {
+        if (current.id === action.payload.id) {
+          current.isFavorite = !action.payload.isFavorite;
+        }
+      });
     }
   },
   extraReducers: (builder) => {

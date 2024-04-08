@@ -22,4 +22,3 @@ export function useSortOffers(offers: OffersDataType[], type: string): OffersDat
   }
 
 }
-
