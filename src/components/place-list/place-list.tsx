@@ -13,7 +13,7 @@ type PlaceListProps = {
 
 export function PlaceList ({offersData, city}: PlaceListProps): JSX.Element {
   const [id, setId] = useState('');
-  const [sortingType, setSortingType] = useState(SortingTypes.Popular);
+  const [sortingType, setSortingType] = useState<SortingTypes>(SortingTypes.Popular);
   const newData = useSortOffers(offersData, sortingType);
 
   return (
