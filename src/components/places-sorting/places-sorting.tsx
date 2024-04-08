@@ -3,10 +3,9 @@ import { SortingTypes } from '../../consts';
 import { PlacesOption } from '../places-option/places-option';
 
 type PlacesSortingType = {
-  setSortingType: (key: string) => void;
+  setSortingType: (key: SortingTypes) => void;
   sortingType: SortingTypes;
 }
-//{visible ? <PlacesOptions setSortingType={setSortingType} sortingType={sortingType} setVisible={setVisible}/> : null}
 export function PlacesSorting({setSortingType, sortingType}: PlacesSortingType): JSX.Element {
   const [visible, setVisible] = useState(false);
   return (

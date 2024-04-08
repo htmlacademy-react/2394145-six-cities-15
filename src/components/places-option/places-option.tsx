@@ -1,7 +1,7 @@
 import { SortingTypes } from '../../consts';
 
 type PlacesOptionType = {
-  setSortingType: (key: string) => void;
+  setSortingType: (key: SortingTypes) => void;
   sortingType: SortingTypes;
   currentSortingType: SortingTypes;
   setVisible: (key: boolean) => void;
