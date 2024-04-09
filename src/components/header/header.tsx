@@ -9,7 +9,7 @@ function Header(): JSX.Element {
   const status = useAppSelector((state) => state.user.status);
   const dispatch = useAppDispatch();
 
-  function logoutFunction() {
+  function initiateLogout() {
     dispatch(logout());
   }
   return (
@@ -30,7 +30,7 @@ function Header(): JSX.Element {
               </li>
               <li className="header__nav-item">
                 <a className="header__nav-link">
-                  {status === AuthorizationStatus.Auth ? <span className="header__signout" onClick={logoutFunction}>Sign out</span> : null}
+                  {status === AuthorizationStatus.Auth ? <span className="header__signout" onClick={initiateLogout}>Sign out</span> : null}
                 </a>
               </li>
             </ul>

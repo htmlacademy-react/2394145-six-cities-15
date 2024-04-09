@@ -33,7 +33,7 @@ export enum SortingTypes {
   Rated_first = 'Top rated first'
 }
 
-export const RatingTitle: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
+export const ratingTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
 export const URL_MARKER_DEFAULT =
 '../public/img/pin.svg';

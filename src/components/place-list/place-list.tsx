@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PlaceCard from '../palce-card/place-card';
+import PlaceCard from '../place-card/place-card';
 import { Map } from '../map/map';
 import { City, OffersDataType } from '../../types';
 import { PlacesSorting } from '../places-sorting/places-sorting';
