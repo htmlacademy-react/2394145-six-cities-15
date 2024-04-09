@@ -13,7 +13,7 @@ import { checkAuth, getFavoriteOffers, getOffers } from '../../store/api-action'
 import { LoadingSpinner } from '../loading-spinner/loading-spinner';
 
 
-export function App(): JSX.Element {
+function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getOffers());
@@ -66,4 +66,5 @@ export function App(): JSX.Element {
   );
 }
 
+export default App;
 
