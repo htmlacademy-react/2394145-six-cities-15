@@ -3,7 +3,7 @@ import {Icon, Marker, layerGroup} from 'leaflet';
 import {City, OfferDataType, OffersDataType} from '../../types';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../consts';
 import 'leaflet/dist/leaflet.css';
-import {useMap} from '../hooks/use-map';
+import {useMap} from '../../hooks/use-map';
 
 type MapProps = {
   className?: string;

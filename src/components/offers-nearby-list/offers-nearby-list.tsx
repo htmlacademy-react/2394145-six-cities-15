@@ -1,5 +1,5 @@
 import { OffersDataType } from '../../types';
-import PlaceCard from '../palce-card/place-card';
+import PlaceCard from '../place-card/place-card';
 
 type OffersNearbyListPrors = {
   offersNearby: OffersDataType[];
