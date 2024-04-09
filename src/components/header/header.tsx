@@ -1,5 +1,5 @@
 import { HeaderAuth } from '../header-auth/header-auth';
-import Logo from '../logo/logo';
+import { Logo } from '../logo/logo';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../consts';
 import { Link } from 'react-router-dom';

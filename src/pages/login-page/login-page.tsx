@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import Logo from '../../components/logo/logo';
+import { Logo } from '../../components/logo/logo';
 import { FormEvent, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Navigate } from 'react-router-dom';
