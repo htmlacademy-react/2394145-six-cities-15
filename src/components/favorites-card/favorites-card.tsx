@@ -47,11 +47,9 @@ export function FavoritesCard({offersData}: FavoritesCardProps): JSX.Element {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <Link to={`/offer/${offersData.id}`}>
-          <h2 className="place-card__name">
-            <a href="#">{offersData.title}</a>
-          </h2>
-        </Link>
+        <h2 className="place-card__name">
+          <Link to={`/offer/${offersData.id}`}>{offersData.title}</Link>
+        </h2>
         <p className="place-card__type">Apartment</p>
       </div>
     </article>

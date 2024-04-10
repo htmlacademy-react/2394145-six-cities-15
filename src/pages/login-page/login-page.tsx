@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Logo } from '../../components/logo/logo';
 import { FormEvent, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { login } from '../../store/api-action';
 import { AppRoute, AuthorizationStatus } from '../../consts';
 
@@ -62,9 +62,9 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link className="locations__item-link" to={AppRoute.Main}>
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
