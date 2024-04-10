@@ -5,8 +5,9 @@ import { useEffect } from 'react';
 import { getFavoriteOffers } from '../../store/api-action';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FavoritesEmpty } from '../../components/favorites-empty/favorites-empty';
-import { LoadingStatus } from '../../consts';
+import { AppRoute, LoadingStatus } from '../../consts';
 import { LoadingSpinner } from '../../components/loading-spinner/loading-spinner';
+import { Link } from 'react-router-dom';
 
 function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -26,9 +27,9 @@ function FavoritesPage(): JSX.Element {
       {loadingStatus === LoadingStatus.Loading && offersData.length < 1 ? <LoadingSpinner/> : null}
       {offersData.length < 1 && loadingStatus === LoadingStatus.Succes ? <FavoritesEmpty/> : <FavoritesList offersData={offersData}/>}
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.Main}>
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-        </a>
+        </Link>
       </footer>
     </div>
   );

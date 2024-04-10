@@ -56,7 +56,7 @@ function PlaceCard({offersData, setId, type}: PlaceCardProps): JSX.Element {
         </div>
         <Link to={`/offer/${offersData.id}`}>
           <h2 className="place-card__name">
-            <a>{offersData.title}</a>
+            {offersData.title}
           </h2>
         </Link>
         <p className="place-card__type">{offersData.type[0].toUpperCase() + offersData.type.slice(1)}</p>
